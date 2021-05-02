@@ -1,0 +1,17 @@
+---
+- hosts: buildserver
+  become: true
+
+  tasks:
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: 'https://github.com/yoshist/spring2.git'
+        dest: spring2
+
+    - name: Go to git project directory
+      ansible.builtin.shell: cd spring2
+
+    - name: Deploy war file
+      ansible.builtin.copy:
+        src: target/Calculator1-0.0.1-SNAPSHOT.war
+        dest: target/Calculator1-0.0.1-SNAPSHOT.war
