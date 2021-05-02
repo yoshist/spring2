@@ -1,0 +1,9 @@
+---
+- hosts: clients
+  become: true
+
+  tasks:
+    - name: Deploy war file
+      ansible.builtin.copy:
+        src: target/Calculator1-0.0.1-SNAPSHOT.war
+        dest: Calculator1-0.0.1-SNAPSHOT.war
