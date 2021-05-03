@@ -7,6 +7,10 @@
       ansible.builtin.git:
         repo: 'https://github.com/yoshist/spring2.git'
         dest: spring2
+        
+    - name: "Display war files"
+      shell: "find . -type f | grep war"
+      register: "output"
 
     - name: Go to git project directory
       ansible.builtin.shell: cd spring2
