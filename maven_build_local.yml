@@ -1,0 +1,12 @@
+---
+- hosts: local
+  connection: local
+
+  tasks:
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: 'https://github.com/yoshist/spring2.git'
+        dest: spring2
+
+    - name: Go to git project directory
+      ansible.builtin.shell: cd spring2
