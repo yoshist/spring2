@@ -3,7 +3,23 @@
   become: true
 
   tasks:
+    - name: Stop the Tomcat service, if running
+      ansible.builtin.systemd:
+        state: stopped
+        name: tomcat
+
+    - name: Delete existing war file
+      ansible.builtin.file:
+        path: /opt/tomcat/webapps/Calculator1-0.0.1-SNAPSHOT.war
+        state: absent
+
     - name: Deploy war file
       ansible.builtin.copy:
         src: target/Calculator1-0.0.1-SNAPSHOT.war
-        dest: Calculator1-0.0.1-SNAPSHOT.war
+        dest: /opt/tomcat/webapps/Calculator1-0.0.1-SNAPSHOT.war
+
+    - name: Start Tomcat
+      ansible.builtin.systemd:
+        state: started
+        daemon_reload: yes
+        name: tomcat
