@@ -5,5 +5,5 @@
   tasks:
     - name: Deploy war file
       ansible.builtin.copy:
-        src: spring2/target/Calculator1-0.0.1-SNAPSHOT.war
+        src: target/Calculator1-0.0.1-SNAPSHOT.war
         dest: Calculator1-0.0.1-SNAPSHOT.war
